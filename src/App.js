@@ -1,152 +1,100 @@
 import React from "react";
 import avatar from "../src/imgs/me-on-erica-bdayjpg.jpg";
 import "./App.css";
+import Todoitem from "./components/Todoitem.js";
+import Nav from "./components/Nav.js";
 
-const fontColor = "#10878E";
-
-const user = {
-  ProfileName: "Cash Tatum",
-  profileImg: avatar,
-};
-
-const todoList = [
-  {
-    id: 1,
-    description: "Go Grocery Shopping",
-    isCompleted: true,
-  },
-  {
-    id: 2,
-    description: "Doctor's appointment",
-    isCompleted: true,
-  },
-  {
-    id: 3,
-    description: "Book flight",
-    isCompleted: false,
-  },
-  {
-    id: 4,
-    description: "Call Mom",
-    isCompleted: false,
-  },
-];
-function App() {
-  return (
-    <div style={pageWrapperStyles}>
-      <nav className="sidebar-nav" style={navStyles.sidebarNavContainer}>
-        <div
-          style={profileContainerStyles.containedItems}
-          className="contained-items"
-        >
-          <img
-            src={user.profileImg}
-            alt="profile-img"
-            style={navStyles.sidebarNavAvatar}
-          />
-          <h2 style={navStyles.sidebarNavUserName}>{user.ProfileName}</h2>
+class App extends React.Component {
+  state = {
+    user: {
+      ProfileName: "Cash Tatum",
+      profileImg: avatar,
+    },
+    todoList: [
+      {
+        id: 1,
+        description: "Go Grocery Shopping",
+        isCompleted: true,
+      },
+      {
+        id: 2,
+        description: "Doctor's appointment",
+        isCompleted: true,
+      },
+      {
+        id: 3,
+        description: "Book flight",
+        isCompleted: false,
+      },
+      {
+        id: 4,
+        description: "Call Mom",
+        isCompleted: false,
+      },
+    ],
+  };
+  render() {
+    return (
+      <div style={styles.pageContainer}>
+        <Nav user={this.state.user} />
+        <div style={styles.listContainer}>
+          <h1 style={styles.listTitle}>Todo List:</h1>
+          <ul>
+            {this.state.todoList.map((todoItem) => (
+              <Todoitem todoItem={todoItem} />
+            ))}
+          </ul>
+          <input style={styles.newItemInput} type="text" />
+          <button style={styles.newItemButton}>Add New Todo</button>
         </div>
-        <ul style={navStyles.linkList}>
-          <li style={navStyles.linkListItem} className={"sidebar-list"}>
-            School
-          </li>
-          <li style={navStyles.linkListItem} className={"sidebar-list"}>
-            Work
-          </li>
-          <li style={navStyles.linkListItem} className={"sidebar-list"}>
-            {" "}
-            Past
-          </li>
-          <li style={navStyles.linkListItem} className={"sidebar-list"}>
-            New List
-          </li>
-        </ul>
-      </nav>
-      <div style={listStyles.listContainer}>
-        <h1 className="todolist-title" style={listStyles.listTitle}>
-          Todo List:
-        </h1>
-        <ul style={listStyles.list}>
-          {todoList.map((todoItem) => (
-            <li key={todoItem.id} style={listStyles.listItem}>
-              <input
-                style={listStyles.listItemInput}
-                type="checkbox"
-                checked={todoItem.isCompleted}
-              />
-              <span
-                style={
-                  todoItem.isCompleted
-                    ? listStyles.listItemDescriptionCompleted
-                    : listStyles.listItemDescriptionNotCompleted
-                }
-              >
-                {todoItem.description}
-              </span>
-            </li>
-          ))}
-        </ul>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
-const pageWrapperStyles = {
-  display: "flex",
-};
-const listStyles = {
+const styles = {
+  pageContainer: {
+    display: "flex",
+    width: "100%",
+  },
   listContainer: {
     padding: "0 2rem",
-  },
-  listTitle: {
-    marginBottom: ".5rem",
-  },
-  list: {},
-  listItem: {
-    marginBottom: ".5rem",
-  },
-  listItemInput: {
-    marginRight: ".3rem",
-  },
-  listItemDescriptionCompleted: {
-    color: "#10878E",
-    textDecoration: "line-through",
-  },
-  listItemDescriptionNotCompleted: {},
-};
-
-const profileContainerStyles = {
-  containedItems: {
-    display: "flex",
-    justifyContent: " space-around",
-    topMargin: "2rem",
-  },
-};
-const navStyles = {
-  sidebarNavContainer: {
-    backgroundColor: "#AFEBEF",
+    width: "67%",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    justifyContent: "flex-start",
-    padding: "0 2rem",
-    minHeight: "100vh",
   },
-  sidebarNavAvatar: {
-    width: "3rem",
-    borderRadius: "2rem",
+  listTitle: {
+    marginTop: "1.5rem",
+    marginBottom: "1rem",
+    borderBottom: "1px solid black",
+    marginTop: "2rem",
+    fontSize: "25px",
   },
-  sidebarNavUserName: {
-    color: fontColor,
-    fontSize: "16px",
+  newItemInput: {
+    marginTop: "2rem",
   },
-  linkList: {
-    marginTop: "10rem",
-  },
-
-  linkListItem: {
-    color: fontColor,
+  newItemButton: {
+    marginTop: ".5rem",
   },
 };
 
 export default App;
+
+/* <li key={todoItem.id} style={listStyles.listItem}> */
+
+//   <input
+//     style={listStyles.listItemInput}
+//     type="checkbox"
+//     checked={todoItem.isCompleted}
+//   />
+//   <span
+//     style={
+//       todoItem.isCompleted
+//         ? listStyles.listItemDescriptionCompleted
+//         : listStyles.listItemDescriptionNotCompleted
+//     }
+//   >
+//     {todoItem.description}
+//   </span>
+// </li></li>

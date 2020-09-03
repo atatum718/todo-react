@@ -12,15 +12,12 @@ body {
 
 li {
   list-style-type: none;
+  border-radius: 1rem;
+  border-color: #10878e;
 }
 
 .contained-items {
-  margin-top: 2rem;
-}
-.sidebar-list {
-  padding: 1rem;
+  margin-top: 3rem;
 }
 
-.todolist-title {
-  font-size: 25px;
-}
+/* { marginTop: "2rem" } */
