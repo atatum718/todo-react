@@ -32,6 +32,22 @@ class App extends React.Component {
         isCompleted: false,
       },
     ],
+    newTodoDescription: "",
+  };
+  handleChangeNewTodo = (event) => {
+    const value = event.target.value;
+    this.setState({ newTodoDescription: value });
+  };
+  handleAddNewTodo = () => {
+    this.setState((state) => {
+      return {
+        todoList: [
+          ...state.todoList,
+          { id: 5, description: state.newTodoDescription, isCompleted: false },
+        ],
+        newTodoDescription: "",
+      };
+    });
   };
   render() {
     return (
@@ -44,8 +60,18 @@ class App extends React.Component {
               <Todoitem todoItem={todoItem} />
             ))}
           </ul>
-          <input style={styles.newItemInput} type="text" />
-          <button style={styles.newItemButton}>Add New Todo</button>
+          <input
+            style={styles.newItemInput}
+            onChange={this.handleChangeNewTodo}
+            value={this.state.newTodoDescription}
+            type="text"
+          />
+          <button
+            onClick={this.handleChangeNewTodo}
+            style={styles.newItemButton}
+          >
+            Add New Todo
+          </button>
         </div>
       </div>
     );
