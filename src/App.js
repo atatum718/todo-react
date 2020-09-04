@@ -66,10 +66,7 @@ class App extends React.Component {
             value={this.state.newTodoDescription}
             type="text"
           />
-          <button
-            onClick={this.handleChangeNewTodo}
-            style={styles.newItemButton}
-          >
+          <button onClick={this.handleAddNewTodo} style={styles.newItemButton}>
             Add New Todo
           </button>
         </div>
@@ -94,7 +91,7 @@ const styles = {
     marginTop: "1.5rem",
     marginBottom: "1rem",
     borderBottom: "1px solid black",
-    marginTop: "2rem",
+    // marginTop: "2rem",
     fontSize: "25px",
   },
   newItemInput: {
@@ -106,21 +103,3 @@ const styles = {
 };
 
 export default App;
-
-/* <li key={todoItem.id} style={listStyles.listItem}> */
-
-//   <input
-//     style={listStyles.listItemInput}
-//     type="checkbox"
-//     checked={todoItem.isCompleted}
-//   />
-//   <span
-//     style={
-//       todoItem.isCompleted
-//         ? listStyles.listItemDescriptionCompleted
-//         : listStyles.listItemDescriptionNotCompleted
-//     }
-//   >
-//     {todoItem.description}
-//   </span>
-// </li></li>
