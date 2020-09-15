@@ -1,12 +1,17 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function Todoitem(props) {
+  const handleCheckTodo = () => props.onCheckTodo(props.todoItem.id);
+  const handleDeleteTodo = () => props.onDeleteTodo(props.todoItem.id);
   return (
     <li key={props.todoItem.id} style={styles.listItem}>
       <input
         style={styles.listItemInput}
         type="checkbox"
-        checked={props.todoItem.isCompleted}
+        defaultChecked={props.todoItem.isCompleted}
+        onChange={handleCheckTodo}
       />
       <span
         style={
@@ -17,6 +22,9 @@ function Todoitem(props) {
       >
         {props.todoItem.description}
       </span>
+      <button onClick={handleDeleteTodo}>
+        <FontAwesomeIcon icon={faTrash} style={{ color: "#10878E" }} />
+      </button>
     </li>
   );
 }

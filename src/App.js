@@ -49,6 +49,31 @@ class App extends React.Component {
       };
     });
   };
+
+  handleCheckTodo = (id) => {
+    this.setState((state) => {
+      let newList = state.todoList.map((item) => {
+        if (item.id === id) {
+          return { ...item, iscompleted: !item.iscompleted };
+        }
+        return item;
+      });
+      return { todoList: newList };
+    });
+  };
+
+  handleDeleteTodo = (id) => {
+    this.setState((state) => {
+      let filteredList = state.todoList.filter((item) => {
+        if (item.id === id) {
+          return false;
+        }
+        return true;
+      });
+      return { todoList: filteredList };
+    });
+  };
+
   render() {
     return (
       <div style={styles.pageContainer}>
@@ -57,7 +82,12 @@ class App extends React.Component {
           <h1 style={styles.listTitle}>Todo List:</h1>
           <ul>
             {this.state.todoList.map((todoItem) => (
-              <Todoitem todoItem={todoItem} />
+              <Todoitem
+                key={todoItem.id}
+                todoItem={todoItem}
+                onCheckTodo={this.handleCheckTodo}
+                onDeleteTodo={this.handleDeleteTodo}
+              />
             ))}
           </ul>
           <input
