@@ -4,6 +4,7 @@ import "./App.css";
 import Todoitem from "./components/Todoitem.js";
 import Nav from "./components/Nav.js";
 
+const TODO_LIST_KEY = "todoapp_list";
 class App extends React.Component {
   state = {
     user: {
@@ -34,6 +35,23 @@ class App extends React.Component {
     ],
     newTodoDescription: "",
   };
+
+  componentDidMount() {
+    let todoListStr = localStorage.getItem(TODO_LIST_KEY);
+    if (todoListStr) {
+      this.setState({
+        todoList: JSON.parse(todoListStr),
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.todoList !== prevState.todoList) {
+      let todoListStr = JSON.stringify(this.state.todoList);
+      localStorage.setItem(TODO_LIST_KEY, todoListStr);
+    }
+  }
+
   handleChangeNewTodo = (event) => {
     const value = event.target.value;
     this.setState({ newTodoDescription: value });
@@ -54,7 +72,7 @@ class App extends React.Component {
     this.setState((state) => {
       let newList = state.todoList.map((item) => {
         if (item.id === id) {
-          return { ...item, iscompleted: !item.iscompleted };
+          return { ...item, isCompleted: !item.isCompleted };
         }
         return item;
       });
