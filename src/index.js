@@ -7,8 +7,10 @@ import Dashboard from "./components/Dashboard";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Clock />
+    <BrowserRouter>
+      {/* <Clock /> */}
+      <App />
+    </BrowserRouter>
     <Dashboard />
   </React.StrictMode>,
   document.getElementById("root")

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const fontColor = "#10878E";
 
 function Nav(props) {
@@ -16,6 +16,8 @@ function Nav(props) {
         />
         <h2 style={styles.UserName}>{props.user.ProfileName}</h2>
       </div>
+      <Link to="/">Home</Link>
+      <Link to="/todos">Todo List</Link>
       <ul style={styles.linkList}>
         <li style={styles.linkListItem} className={"sidebar-list"}>
           School

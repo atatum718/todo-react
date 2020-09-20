@@ -19,14 +19,18 @@ class Clock extends React.Component {
   }
   render() {
     let greeting = "";
-    if (this.state.day === 4) {
-      greeting = " Happy Thursday!, What's On Your Agenda Today?";
+    if (this.state.day === 1) {
+      greeting =
+        " Happy Monday!, Top of the week. What's On Your Agenda Today?";
     }
     if (this.state.day === 5) {
       greeting = "Yay its Friday!, What's On Your Agenda Today?";
+    } else {
+      greeting = " What do you need to do Today?";
     }
+
     return (
-      <div className="background-image" style={styles.greetingSentence}>
+      <div style={styles.greetingSentence}>
         {greeting}
         {this.state.now.toLocaleTimeString()}
       </div>
