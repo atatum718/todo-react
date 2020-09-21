@@ -1,4 +1,5 @@
 import React from "react";
+import { BackgroundImage } from "./Dashboard.js";
 
 class Clock extends React.Component {
   state = {
@@ -30,17 +31,17 @@ class Clock extends React.Component {
     }
 
     return (
-      <div style={styles.greetingSentence}>
+      <BackgroundImage style={styles.greetingSentence}>
         {greeting}
         {this.state.now.toLocaleTimeString()}
-      </div>
+      </BackgroundImage>
     );
   }
 }
 const styles = {
   greetingSentence: {
     textAlign: "center",
-    marginTop: "10rem",
+    // marginTop: "10rem",
   },
 };
 

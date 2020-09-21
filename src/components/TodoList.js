@@ -1,5 +1,6 @@
 import React from "react";
 import Todoitem from "./Todoitem";
+import styled from "styled-components";
 
 const TODO_LIST_KEY = "todoapp_list";
 class TodoList extends React.Component {
@@ -87,8 +88,8 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <div style={styles.listContainer}>
-        <h1 style={styles.listTitle}>Todo List:</h1>
+      <ListContainer>
+        <ListTitle>Todo List:</ListTitle>
         <ul>
           {this.state.todoList.map((todoItem) => (
             <Todoitem
@@ -99,41 +100,36 @@ class TodoList extends React.Component {
             />
           ))}
         </ul>
-        <input
-          style={styles.newItemInput}
+        <NewItemInput
           onChange={this.handleChangeNewTodo}
           value={this.state.newTodoDescription}
           type="text"
         />
-        <button onClick={this.handleAddNewTodo} style={styles.newItemButton}>
+        <NewItemButton onClick={this.handleAddNewTodo}>
           Add New Todo
-        </button>
-      </div>
+        </NewItemButton>
+      </ListContainer>
     );
   }
 }
+const ListContainer = styled.div`
+  padding: 0 2rem;
+  width: 67%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const ListTitle = styled.h1`
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black;
 
+  font-size: 25px;
+`;
+const NewItemInput = styled.input`
+  margin-top: 2rem;
+`;
+const NewItemButton = styled.button`
+  margin-top: 0.5rem;
+`;
 export default TodoList;
-
-const styles = {
-  listContainer: {
-    padding: "0 2rem",
-    width: "67%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  },
-  listTitle: {
-    marginTop: "1.5rem",
-    marginBottom: "1rem",
-    borderBottom: "1px solid black",
-    // marginTop: "2rem",
-    fontSize: "25px",
-  },
-  newItemInput: {
-    marginTop: "2rem",
-  },
-  newItemButton: {
-    marginTop: ".5rem",
-  },
-};
