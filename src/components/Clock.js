@@ -22,12 +22,12 @@ class Clock extends React.Component {
     let greeting = "";
     if (this.state.day === 1) {
       greeting =
-        " Happy Monday!, Top of the week. What's On Your Agenda Today?";
+        " Happy Monday!, Top of the week. What's On Your Agenda Today? ";
     }
     if (this.state.day === 5) {
-      greeting = "Yay its Friday!, What's On Your Agenda Today?";
+      greeting = "Yay its Friday!, What's On Your Agenda Today? ";
     } else {
-      greeting = " What do you need to do Today?";
+      greeting = " What do you need to do Today? ";
     }
 
     return (
@@ -41,7 +41,12 @@ class Clock extends React.Component {
 const styles = {
   greetingSentence: {
     textAlign: "center",
-    // marginTop: "10rem",
+    fontSize: "30px",
+    fontFamily: " Verdana, Geneva, Tahoma, sans-serif",
+    color: "white",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 };
 
